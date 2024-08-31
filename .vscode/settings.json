@@ -1,0 +1,5 @@
+{
+    "python.analysis.typeCheckingMode": "basic",
+    "appService.defaultWebAppToDeploy": "/subscriptions/b03a1018-bc08-4c00-8f26-c65f9f7689bf/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/pythonjudge",
+    "appService.deploySubpath": "."
+}

@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="zh-CN">
+  <title>Challenge {{ challenge_id }}</title>
+  <head>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset=utf-8>
+        <!-- <script src="pyodide/pyodide.js"> </script> -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+    <link rel="stylesheet" href="codemirror-5.65.16/lib/codemirror.css">
+    <link rel=stylesheet href="codemirror-5.65.16/doc/docs.css">
+    <script src="codemirror-5.65.16/lib/codemirror.js"></script>
+    <script src="codemirror-5.65.16/addon/edit/matchbrackets.js"></script>
+    <script src="codemirror-5.65.16/mode/python/python.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="lib/fileops.js"></script>
+    <script src="lib/githubops.js"></script>
+    <style>
+      .intro-container {
+        width: 100%;
+        /* height: 12vh; */
+        /* max-height: 138px; */
+        display: flex;
+        overflow: auto;
+        flex-direction: column;
+        justify-content: left;
+        align-items: left;
+        text-align: left;
+      }
+      .editor-container {
+        width: 100%;
+        height: 55vh;
+        /*max-height: 800px; /* maximum height for the container */
+        border: 1px solid #ccc;
+        overflow: hidden; /*hide overflow to control textarea size*/
+        position: relative;
+      }
+      #tab-container {
+        display: flex;
+        overflow-x: auto;
+        width: 100%;
+        height: 40px; /* Adjust height as needed */
+        border-bottom: 1px solid #ccc;
+      }
+      #tab-only-container {
+        display: inline-flex;
+        overflow-x: auto;
+        height: 38px; /* Adjust height as needed */
+        border-bottom: 1px solid #ccc;
+      }
+      .tab {
+        display: flex;
+        align-items: center;
+        padding: 5px 10px;
+        background-color: #f0f0f0;
+        margin-right: 5px;
+        border-radius: 5px 10px 0 0;
+      }
+      .tab.active {
+        background-color: #e0e0e0;
+        border-bottom: 2px solid #0d09ef;
+        color:#000000;
+      }
+      .tab-button {
+        display: inline-flex;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        color:#5b5b5b;
+        margin-right: 1px;
+      }
+      #add-tab {
+        /* ... style the add tab button ... */
+        font-size:large;
+        color:green;
+      }
+
+      .code-editor-container {
+        display: flex;;
+        left: 0;
+        width: calc(100% - 2px);
+        height: calc(100% - 80px); /* Adjust height as needed */
+        border: 1px solid #0d09ef;
+        overflow: hidden;
+      }
+      .code-editor-wrapper {
+        position: relative;
+        left: 0;
+        width: 100%;
+        height: 100%; /* Adjust height as needed */
+        overflow: hidden;
+      }
+
+      .CodeMirror {
+        width: 99%;
+        height: 99%;
+      }
+      .output-container {
+        width: 100%;
+        height: 32vh;
+        /*max-height: 400px; /* maximum height for the container */
+        border: 1px solid #ccc;
+        overflow: hidden; /*hide overflow to control textarea size*/
+        position: relative;
+      }
+      .editable {
+        width: 100%;
+        height: calc(100% - 40px);
+        border: 1px solid #ccc;
+        padding: 2px;
+        overflow-y: auto;
+        white-space: pre-wrap;
+      }
+      .red-text {
+        color: red;
+      }
+      #output {
+        width: 100%;
+        box-sizing: border-box; /* ensures padding is included in width calculation */
+        overflow-y: auto; /* adds scroll bar when content exceeds max height */
+        resize: none; /* disable manual resizing */
+      }
+      .resize-handle {
+        width: 100%;
+        height: 5px;
+        background-color: transparent; /* Make the background transparent */
+        cursor: ns-resize;
+        position: relative;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        align-content: center;
+      }
+
+      .resize-handle::before { /* Add a pseudo-element for the visual cue */
+        content: "";
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90px;
+        height: 4px;
+        background-color: #0091ff; /* Use a visible color */
+        border-radius: 2px; /* Make it slightly rounded */
+        z-index: 1;
+      }
+      #clearOutput {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        width: 24px;
+        height: 24px;
+      }
+      /* #clearOutput::before, #clearOutput::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 16px;
+        height: 2px;
+        background-color: black;
+      }
+      #clearOutput::before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      #clearOutput::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      } */
+      #file-list-popup {
+        display: none;
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid #000;
+        background: #fff;
+        padding: 20px;
+        width: 80%;
+        height: 80%;
+        overflow-y: auto;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+      #file-list-popup ul {
+        list-style-type: none;
+        line-height: 1.0;
+        padding: 0;
+      }
+      #file-list-popup ul li {
+        margin: 5px 0;
+      }
+      #file-list-popup ul li a {
+        text-decoration: none;
+        color: #007bff;
+      }
+      #file-list-popup ul li a:hover {
+        text-decoration: underline;
+      }
+      body {
+        /* ... background image styles ... */
+        position: relative;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)); /* Add a gradient overlay */
+      }
+      .intro-container {
+        /* ... existing styles ... */
+        background-color: rgba(235, 235, 235, 0.7); /* Add a semi-transparent background to the intro container */
+        border-radius: 10px; /* Add rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add a shadow */
+      }
+      
+      .editor-container {
+        /* ... existing styles ... */
+        background-color: rgba(0, 0, 0, 0.8); /* Add a semi-transparent background to the editor container */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      
+      .output-container {
+        /* ... existing styles ... */
+        background-color: rgba(213, 213, 213, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      
+      button {
+        /* ... existing styles ... */
+        background-color: #d4d4ff; /* Set button background color */
+        color: #373737;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(128, 128, 128, 0.2);
+      }
+      
+      button:hover {
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+
+  <body style="overflow: auto; padding: 2px;padding-right: 5px;">
+    <div class="intro-container" id="intro-container">
+      <span style="text-align: center;">
+        <h2 id="title">Challenge <div id='challenge_id' style="display: inline;">{{ challenge_id }}</div>: {{ title }}</h2>
+      </span>
+      <p id="goal" style="text-align: left;line-height: 0.8;">Goal: {{ goal }}</p>
+      Description:
+      <pre id="intro" style="align-content: start;line-height: 1.0;"> {{ description }} </pre>
+      <p id="warning" style="text-align: left;font-style: italic;line-height: 0.8;">Notes: {{ notes }}</p>
+    </div>
+
+    <div class="resize-handle" id="resizeIntroHandle"></div>
+
+    <div class="editor-container" id="editor-container">
+      <div id="tab-container">
+        <div id="tab-only-container">
+
+        </div>
+        <button id="add-tab" onclick="addTab()">+</button>
+      </div>
+      <div class="code-editor-container" id="code-editor-container">
+        <textarea id="code-editer-textarea" hidden>{{ starting_code }}</textarea>
+
+      </div>
+      <div id="file-list-popup" hidden>
+        <h3 id="repo-title" style="line-height: 1.0;">File List</h3>
+        <div style="overflow: auto; height: 80%;">
+          <ul id="gitRepofileList"></ul>
+        </div>
+          <input type="text" id="virtual-file-name" placeholder="filename.py">
+          <button id="file-list-popup-ok" onclick="confirmPopup()"> OK </button>
+          <button id="file-list-popup-cancel" onclick="closePopup()"> Cancel </button>
+      </div>
+      <button id="run" onclick="evaluatePython()" title="Run(Ctrl+Enter)" style="color: green;" disabled>&#x25B6;</button>
+      | <button id="save-virtual-file" onclick="showFSContents('.', 'save')">Save virtual file</button>
+      | <button id="open-virtual-file" onclick="showFSContents()">Open virtual file</button>
+      | <button id="open-book-example" style="background-color:khaki;" onclick="showRepoContents()">Open Examples</button>
+      | <button id="submit-button" style="background-color:antiquewhite;" onclick="submitCode()">Submit Code for evaluations</button>
+      | <button id="upload-file-button" style="background-color:antiquewhite;" onclick="uploadFileSelector()" hidden>传本机文件到虚拟机</button>
+      | <button id="download-file-button" style="background-color: antiquewhite;" onclick="downloadAllFilesAsZip()" hidden>传虚拟机文件到本机(ZIP)</button>
+      <input type="file" id="upload-file-input" accept=".py" hidden>
+    </div>
+    
+    <div class="resize-handle" id="resizeEditorHandle"></div>
+
+    <div class="output-container" id="output-container">
+      <h3 id="output-title" style="height: 10px; vertical-align: top;">输出结果:</h3>
+      <button id="clearOutput" aria-label="Close" title="clear output">&#x1F9F9;</button>
+      <div class="editable" contenteditable="true" id="styledText" tabindex="0"></div>
+      <textarea id="output" hidden></textarea>
+    </div>
+    <input id="user_input" hidden>
+    <script>
+      // Function to create a new CodeMirror instance
+      function createCodeMirror(tabId) {
+        const codeEditorWrapper = document.querySelector(`.code-editor-wrapper[data-tab-id="${tabId}"]`);
+        const textarea = document.getElementById('code-editer-textarea');
+        const editor = CodeMirror.fromTextArea(textarea, {
+          lineNumbers: true,
+          mode: { name: "python", version: 3, singleLineStringErrors: false },
+          indentUnit: 4,
+          matchBrackets: true
+        });
+        return editor;
+      }
+
+      let buttonOpenText = "打开";
+      let buttonSaveText = "保存";
+      function showPopup(mode="open") {
+        if (mode === "open") {
+          document.getElementById('file-list-popup-ok').innerText = buttonOpenText;
+        } else if (mode === "save") {
+          document.getElementById('file-list-popup-ok').innerText = buttonSaveText;
+        } else {
+          document.getElementById('file-list-popup-ok').innerText = "OK";
+        }
+        document.getElementById('file-list-popup').style.display = 'block';
+        // Add event listener for Esc keyup
+        window.editor.setOption('readOnly', true);
+        window.editor.on("keyup", (cm, event) => {
+          if (event.key === 'Escape') {
+            handleEscKey(event);
+          }
+        });
+        
+        document.addEventListener('keyup', handleEscKey);
+      }
+
+      function closePopup() {
+        document.getElementById('file-list-popup').style.display = 'none';
+        // Remove event listener
+        document.removeEventListener('keyup', handleEscKey);
+        window.editor.off("keyup", handleEscKey);
+        window.editor.setOption('readOnly', false);
+      }
+
+      let alertProvideFilename = "请输入文件名";
+      function confirmPopup() {
+        const fileName = document.getElementById('virtual-file-name').value;
+        if (fileName.trim() === '') {
+          alert(alertProvideFilename)
+          return;
+        } else {
+          if (document.getElementById('file-list-popup-ok').innerText === buttonOpenText) {
+            itemPath = document.getElementById('virtual-file-name').value;
+            console.log(`File entered: ${itemPath}`);
+            readFile(itemPath)
+            .then((fileContent)=> {
+              window.editor.setValue(fileContent);
+              window.editor.focus();
+              const tabId = window.editor.getWrapperElement().parentElement.dataset.tabId;
+              targetTab = document.querySelector(`.tab[data-tab-id="${tabId}"]`)
+              targetButton = targetTab.querySelector(`.tab-button`);
+              targetButton.textContent = itemPath;
+            })
+            .catch(error=>
+              stderr_func(error)
+            )
+          } else if (document.getElementById('file-list-popup-ok').innerText === buttonSaveText) {
+            try {
+              const fileContent = window.editor.getValue();
+              saveFile(`${fileName}`, fileContent)
+              .then(()=>{
+                const tabId = window.editor.getWrapperElement().parentElement.dataset.tabId;
+                targetTab = document.querySelector(`.tab[data-tab-id="${tabId}"]`)
+                targetButton = targetTab.querySelector(`.tab-button`);
+                targetButton.textContent = fileName;
+                stdout_func(`File ${fileName} saved successfully.`);})
+              } catch (error) {
+              stderr_func(error);
+            }
+
+          }
+          closePopup();
+        }
+      }
+
+      function handleEscKey(event) {
+        console.log(`Key pressed: ${event.key}`)
+        if (event.key === 'Escape') {
+          closePopup();
+        }
+      }
+
+      async function submitCode() {
+            const content = window.editor.getValue();
+            const challengeIdDiv = document.getElementById('challenge_id');
+            const challenge_id = challengeIdDiv.textContent;
+            const response = await fetch('/submission', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'user-id': 'test_user',
+                    'problem-id': `${challenge_id}`
+                },
+                body: JSON.stringify({ code: content }),
+            });
+            const responseText = await response.text();
+            const responseObj = JSON.parse(responseText);
+            if (response.ok) {
+              stderr_func(responseObj.error );
+              stdout_func(responseObj.output + (responseObj.output && !responseObj.output.endsWith('\n') ? '\n' : '') + '>>>');
+                alert(responseObj.output+'\n'+responseObj.error);
+            } else {
+                stderr_func(responseObj.error);
+                alert('Error submitting content.');
+            }
+        }
+
+      // Create initial CodeMirror instances
+      let codeMirrors = {};
+
+      addTab();
+
+      // Function to switch tabs
+      function switchTab(tabId) {
+        console.log(`switchTab is called to switch to ${tabId}`);
+        const activeTab = document.querySelector('.tab.active');
+        if (activeTab) {
+          activeTab.classList.remove('active');
+        }
+        const targetTab = document.querySelector(`.tab[data-tab-id="${tabId}"]`);
+        targetTab.classList.add('active');
+
+        // Hide all code editors
+        for (const editorId in codeMirrors) {
+          console.log(`--hiding ${editorId}th editor`);
+          codeMirrors[editorId].getWrapperElement().parentElement.style.display = 'none';
+        }
+
+        // Show the code editor for the selected tab
+        codeMirrors[tabId].getWrapperElement().parentElement.style.display = 'block';
+        window.editor = codeMirrors[tabId];
+      }
+
+      // Function to add a new tab
+      function addTab() {
+        const nextTabId = Object.keys(codeMirrors).length + 1;
+        const newTabHTML = `
+          <div class="tab" data-tab-id="${nextTabId}">
+            <button class="tab-button">Tab ${nextTabId}</button>
+          </div>
+        `;
+        const tabContainer = document.getElementById('tab-only-container');
+        tabContainer.innerHTML += newTabHTML;
+
+        const editorContainer = document.getElementById('code-editor-container');
+        editorWrapper = document.createElement('div');
+        editorWrapper.classList.add('code-editor-wrapper');
+        editorWrapper.setAttribute('data-tab-id', nextTabId);
+        editorContainer.append(editorWrapper);
+        // Create CodeMirror instance for the new tab
+        codeMirrors[nextTabId] = createCodeMirror(nextTabId);
+
+        // Add event listeners to tab buttons
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const tabId = button.parentElement.dataset.tabId;
+            switchTab(tabId);
+          });
+        });
+        // Switch to the new tab
+        switchTab(nextTabId);
+      }
+
+
+      function scrollToBottom(textarea) {
+        textarea.scrollTop = textarea.scrollHeight;
+      }
+
+      // Add event listener for the clear button
+      const clearOutputButton = document.getElementById('clearOutput');
+      clearOutputButton.addEventListener('click', clearOutput);
+
+      function clearOutput() {
+        const styledTextDiv = document.getElementById('styledText');
+        const outputTextarea = document.getElementById('output');
+
+        // Clear the content of both elements
+        styledTextDiv.innerHTML = '';
+        outputTextarea.value = '';
+        stdout_func(">>>")
+      }
+
+
+      const styledTextDiv = document.getElementById('styledText');
+      styledTextDiv.setAttribute("contenteditable", false)
+
+      let inputBuffer = "";
+      let lastOutput = "";
+
+      const stdin_func = () => {
+        input = prompt(`Python is waiting for your input,\n${lastOutput}:`)
+        stdout_func(input);
+        return input + "\n";
+      };
+
+      const stdout_func = (output_) => {
+        console.log(`stdout_func is called with ${output_}`)
+        const styledTextDiv = document.getElementById('styledText');
+        const hiddenTextarea = document.getElementById('output');
+        styledTextDiv.innerHTML += output_ + "<br>";
+        hiddenTextarea.value += output_ + "\n";
+        scrollToBottom(styledTextDiv);
+      };
+
+      const stderr_func = (err) => {
+        const styledTextDiv = document.getElementById('styledText');
+        const hiddenTextarea = document.getElementById('output');
+        styledTextDiv.innerHTML += '<span class="red-text">' + err + "</span><br>";
+        hiddenTextarea.value += err + "\n";
+        scrollToBottom(styledTextDiv);
+      };
+
+      class OutputWriter {
+        constructor() {
+          console.log("Initializing OutputWriter...");
+        }
+
+        write(buffer) {
+          console.log(`OutputWriter.write buffer=${buffer}`);
+          const decoder = new TextDecoder('utf-8');
+          const output = decoder.decode(buffer);
+          const styledTextDiv = document.getElementById('styledText');
+          const hiddenTextarea = document.getElementById('output');
+          styledTextDiv.innerHTML += output ;
+          hiddenTextarea.value += output ;
+          lastOutput = output;
+          scrollToBottom(styledTextDiv);
+          console.log(`OutputWrite.write:${styledTextDiv.innerText}`)
+          return output.length;
+        }
+      }
+
+      const outputArea = document.getElementById("styledText");
+      outputArea.innerHTML = "Initializing...<br>";
+
+      //Resize functionality
+      const IntroContainer = document.getElementById('intro-container');
+      const editorContainer = document.getElementById('editor-container');
+      const outputContainer = document.getElementById('output-container');
+      // resize Intro panel
+      const resizeIntroHandle = document.getElementById('resizeIntroHandle');
+      let isIntroResizing = false;
+      resizeIntroHandle.addEventListener('mousedown', function(e) {
+        isIntroResizing = true;
+        document.body.style.cursor = 'ns-resize';
+        e.preventDefault(); // prevent text selection
+      });
+      // resize Editor panel
+      const resizeEditorHandle = document.getElementById('resizeEditorHandle');
+      let isEditorResizing = false;
+
+      resizeEditorHandle.addEventListener('mousedown', function(e) {
+        isEditorResizing = true;
+        document.body.style.cursor = 'ns-resize';
+        e.preventDefault(); // prevent text selection
+      });
+
+      document.addEventListener('mousemove', function(e) {
+        if (isEditorResizing) {
+          const newHeight = e.clientY - editorContainer.getBoundingClientRect().top;
+          editorContainer.style.height = `${newHeight}px`;
+          adjustTextareaHeight(document.getElementById('code-editor'));
+          adjustTextareaHeight(document.getElementById('output'));
+          }
+        if (isIntroResizing) {
+          const newHeight = e.clientY - IntroContainer.getBoundingClientRect().top;
+          IntroContainer.style.height = `${newHeight}px`;
+        }
+      });
+
+      document.addEventListener('mouseup', function(e) {
+        if (isIntroResizing || isEditorResizing) {
+          isIntroResizing = false;
+          isEditorResizing = false;
+          document.body.style.cursor = 'default';
+        }
+      });
+
+
+      // init Pyodide
+      async function main() {
+        let pyodide = await loadPyodide({
+          indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.1/full/",
+          stdin: stdin_func,
+          //stdout: stdout_func,
+          stderr: stderr_func
+        });
+        pyodide.setStdout(new OutputWriter());
+        // Mount the subdirectory
+        pyodide.FS.mkdirTree('/workdir');
+        pyodide.FS.mount(pyodide.FS.filesystems.IDBFS, {}, '/workdir');
+        
+        // Set the current working directory to the subdirectory
+        pyodide.FS.chdir('/workdir');
+        
+        // Synchronize from IndexedDB to in-memory FS
+        await new Promise((resolve, reject) => {
+          pyodide.FS.syncfs(true, (err) => {
+            if (err) reject(err);
+            else resolve();
+          });
+        });
+        // Add the project directory to the Python path
+        await pyodide.runPythonAsync(`
+        import sys
+        sys.path.append('/workdir')
+        `);
+        // Pyodide is now ready to use with the subdirectory
+        stdout_func("Ready!\n>>>");
+        runButton = document.getElementById("run");
+        runButton.disabled = false;
+        return pyodide;
+      }
+      let pyodideReadyPromise = main();
+
+      document.body.addEventListener("keyup", (event) => {
+        const key = event.key;
+        if (event.ctrlKey && key === "Enter") {
+          evaluatePython();
+        }
+      });
+
+      async function evaluatePython() {
+        let pyodide = await pyodideReadyPromise;
+        const code = window.editor.getValue();
+        // const activeTabId = document.querySelector('.tab.active').dataset.tabId;
+        // const code = codeMirrors[activeTabId].getValue();
+        //console.log("executing: "code)
+        runButton = document.getElementById("run");
+        runButton.disabled = true;
+        try {
+          let output = pyodide.runPython(code);
+          stdout_func(">>>");
+          runButton.disabled = false;
+        } catch (err) {
+          stderr_func(err);
+          runButton.disabled = false;
+        }
+      }
+    </script>
+    
+  </body>
+</html>

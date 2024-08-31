@@ -1,0 +1,2184 @@
+test_user,123,. Error:Test failed: Expected '', got 'Hello World!'
+test_user,123,. Error:[Errno 2] No such file or directory: 'challenges/123/problem.json'
+test_user,123,. Error:[Errno 2] No such file or directory: 'challenges/123/problem.json'
+test_user,123,. Error:[Errno 2] No such file or directory: 'challenges/123/problem.json'
+test_user,[object HTMLDivElement],. Error:[Errno 2] No such file or directory: 'challenges/[object HTMLDivElement]/problem.json'
+test_user,[object HTMLDivElement],. Error:[Errno 2] No such file or directory: 'challenges/[object HTMLDivElement]/problem.json'
+test_user,[object HTMLDivElement],. Error:[Errno 2] No such file or directory: 'challenges/[object HTMLDivElement]/problem.json'
+test_user,2,AssertionError(): expecting 8, got: . Error:
+test_user,2,Test passed.. Error:
+test_user,2,AssertionError(): expecting 8, got: 9. Error:
+test_user,2,Test passed.. Error:
+test_user,2,Test passed.. Error:
+test_user,2,AssertionError(): expecting 8, got: . Error:
+test_user,2,AssertionError(): expecting 8, got: 11. Error:
+test_user,2,AssertionError(): expecting 8, got: 11. Error:
+test_user,2,Test passed.. Error:
+test_user,2.2,Test passed.. Error:
+test_user,2.2,Test passed.. Error:
+test_user,2.2,Test passed.. Error:
+test_user,2.2,Test passed.. Error:
+test_user,2.2,AssertionError(): test failed: ============================= test session starts ==============================
+platform linux -- Python 3.11.4, pytest-7.3.1, pluggy-1.0.0
+rootdir: /workspaces/python-challenges
+plugins: anyio-4.4.0
+collected 1 item
+
+challenges/2.2/test_solution.py F                                        [100%]
+
+=================================== FAILURES ===================================
+________________________________ test_solution _________________________________
+
+user_file = 'user_submissions/test_user/2.2.py'
+capsys = <_pytest.capture.CaptureFixture object at 0x71f0ffc54790>
+
+    def test_solution(user_file: str, capsys):
+        """run the user submitted code to test it."""
+        my_dir, _ = os.path.split(__file__)
+        _, my_id = os.path.split(my_dir)
+    
+        print(f"{user_file=}")
+    
+        challenge_data = challenge_details(my_id)
+        startting_code = challenge_data.get("startting_code", '')
+        with open(user_file, "rt", encoding='utf-8') as uf:
+            code_to_test = uf.read()
+        #code_to_test.replace(startting_code, "test_set")
+    
+        exec(code_to_test)
+        captured = capsys.readouterr()
+        print(f"{captured=}")
+>       assert captured.out == "8"
+E       assert "user_file='u...ser/2.2.py'\n" == '8'
+E         - 8
+E         + user_file='user_submissions/test_user/2.2.py'
+
+challenges/2.2/test_solution.py:23: AssertionError
+----------------------------- Captured stdout call -----------------------------
+captured=CaptureResult(out="user_file='user_submissions/test_user/2.2.py'\n", err='')
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution - assert "user_file='u....
+============================== 1 failed in 0.17s ===============================. Error:
+test_user,2.2,AssertionError(): test failed: ============================= test session starts ==============================
+platform linux -- Python 3.11.4, pytest-7.3.1, pluggy-1.0.0
+rootdir: /workspaces/python-challenges
+plugins: anyio-4.4.0
+collected 1 item
+
+challenges/2.2/test_solution.py F                                        [100%]
+
+=================================== FAILURES ===================================
+________________________________ test_solution _________________________________
+
+user_file = 'user_submissions/test_user/2.2.py'
+capsys = <_pytest.capture.CaptureFixture object at 0x7225e485bfd0>
+
+    def test_solution(user_file: str, capsys):
+        """run the user submitted code to test it."""
+        my_dir, _ = os.path.split(__file__)
+        _, my_id = os.path.split(my_dir)
+    
+    
+        challenge_data = challenge_details(my_id)
+        startting_code = challenge_data.get("startting_code", '')
+        with open(user_file, "rt", encoding='utf-8') as uf:
+            code_to_test = uf.read()
+        #code_to_test.replace(startting_code, "test_set")
+    
+        exec(code_to_test)
+        captured = capsys.readouterr()
+>       assert captured.out == "8"
+E       AssertionError: assert '' == '8'
+E         - 8
+
+challenges/2.2/test_solution.py:21: AssertionError
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution - AssertionError: asser...
+============================== 1 failed in 0.28s ===============================. Error:
+test_user,2.2,AssertionError(): test failed: ============================= test session starts ==============================
+platform linux -- Python 3.11.4, pytest-7.3.1, pluggy-1.0.0
+rootdir: /workspaces/python-challenges
+plugins: anyio-4.4.0
+collected 1 item
+
+challenges/2.2/test_solution.py F                                        [100%]
+
+=================================== FAILURES ===================================
+________________________________ test_solution _________________________________
+
+user_file = 'user_submissions/test_user/2.2.py'
+capsys = <_pytest.capture.CaptureFixture object at 0x7b9b5e73a6d0>
+
+    def test_solution(user_file: str, capsys):
+        """run the user submitted code to test it."""
+        my_dir, _ = os.path.split(__file__)
+        _, my_id = os.path.split(my_dir)
+    
+    
+        challenge_data = challenge_details(my_id)
+        startting_code = challenge_data.get("startting_code", '')
+        with open(user_file, "rt", encoding='utf-8') as uf:
+            code_to_test = uf.read()
+        #code_to_test.replace(startting_code, "test_set")
+    
+        exec(code_to_test)
+        captured = capsys.readouterr()
+>       assert captured.out == "8"
+E       AssertionError: assert '8\n' == '8'
+E         - 8
+E         + 8
+
+challenges/2.2/test_solution.py:21: AssertionError
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution - AssertionError: asser...
+============================== 1 failed in 0.18s ===============================. Error:
+test_user,2.2,AssertionError(): test failed: ============================= test session starts ==============================
+platform linux -- Python 3.11.4, pytest-7.3.1, pluggy-1.0.0
+rootdir: /workspaces/python-challenges
+plugins: anyio-4.4.0
+collected 1 item
+
+challenges/2.2/test_solution.py .                                        [100%]
+
+============================== 1 passed in 0.12s ===============================. Error:
+test_user,2.2,AssertionError(): test failed: ============================= test session starts ==============================
+platform linux -- Python 3.11.4, pytest-7.3.1, pluggy-1.0.0
+rootdir: /workspaces/python-challenges
+plugins: anyio-4.4.0
+collected 1 item
+
+challenges/2.2/test_solution.py .                                        [100%]
+
+============================== 1 passed in 0.12s ===============================. Error:
+test_user,2.2,AssertionError(): test failed: .                                                                        [100%]. Error:
+test_user,2.2,AssertionError(): test failed: .                                                                        [100%]. Error:
+test_user,2.2,AssertionError(): test failed: .                                                                        [100%]. Error:
+test_user,2.2,AssertionError(): test failed: .                                                                        [100%]
+1 passed in 0.12s. Error:
+test_user,2.2,AssertionError(): test failed: ============================= test session starts ==============================
+platform linux -- Python 3.11.4, pytest-7.3.1, pluggy-1.0.0 -- /usr/local/py-utils/venvs/pytest/bin/python
+cachedir: .pytest_cache
+rootdir: /workspaces/python-challenges
+plugins: anyio-4.4.0
+collecting ... collected 1 item
+
+challenges/2.2/test_solution.py::test_solution PASSED                    [100%]
+
+============================== 1 passed in 0.11s ===============================. Error:
+test_user,2.2,AssertionError(): test failed: F                                                                        [100%]
+=================================== FAILURES ===================================
+________________________________ test_solution _________________________________
+
+user_file = 'user_submissions/test_user/2.2.py'
+capsys = <_pytest.capture.CaptureFixture object at 0x773765f86950>
+
+    def test_solution(user_file: str, capsys):
+        """run the user submitted code to test it."""
+        my_dir, _ = os.path.split(__file__)
+        _, my_id = os.path.split(my_dir)
+    
+    
+        challenge_data = challenge_details(my_id)
+        startting_code = challenge_data.get("startting_code", '')
+        with open(user_file, "rt", encoding='utf-8') as uf:
+            code_to_test = uf.read()
+        #code_to_test.replace(startting_code, "test_set")
+    
+        exec(code_to_test)
+        captured = capsys.readouterr()
+>       assert captured.out == "8\n"
+E       AssertionError: assert '' == '8\n'
+E         - 8
+
+challenges/2.2/test_solution.py:21: AssertionError
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution - AssertionError: asser...
+1 failed in 0.13s
+. Error:
+test_user,2.2,Test passed.. Error:
+test_user,2.2,Test passed.. Error:
+test_user,2.2,AssertionError(): test failed: F                                                                        [100%]
+=================================== FAILURES ===================================
+________________________________ test_solution _________________________________
+
+user_file = 'user_submissions/test_user/2.2.py'
+capsys = <_pytest.capture.CaptureFixture object at 0x782050cbb450>
+
+    def test_solution(user_file: str, capsys):
+        """run the user submitted code to test it."""
+        my_dir, _ = os.path.split(__file__)
+        _, my_id = os.path.split(my_dir)
+    
+    
+        challenge_data = challenge_details(my_id)
+        startting_code = challenge_data.get("startting_code", '')
+        with open(user_file, "rt", encoding='utf-8') as uf:
+            code_to_test = uf.read()
+        #code_to_test.replace(startting_code, "test_set")
+    
+        exec(code_to_test)
+        captured = capsys.readouterr()
+>       assert captured.out == "8\n"
+E       AssertionError: assert '9\n' == '8\n'
+E         - 8
+E         + 9
+
+challenges/2.2/test_solution.py:21: AssertionError
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution - AssertionError: asser...
+1 failed in 0.16s
+. Error:
+test_user,2.2,AssertionError(): test failed: F                                                                        [100%]
+=================================== FAILURES ===================================
+________________________________ test_solution _________________________________
+
+user_file = 'user_submissions/test_user/2.2.py'
+capsys = <_pytest.capture.CaptureFixture object at 0x7b3c5bafb550>
+
+    def test_solution(user_file: str, capsys):
+        """run the user submitted code to test it."""
+        my_dir, _ = os.path.split(__file__)
+        _, my_id = os.path.split(my_dir)
+    
+    
+        challenge_data = challenge_details(my_id)
+        startting_code = challenge_data.get("startting_code", '')
+        with open(user_file, "rt", encoding='utf-8') as uf:
+            code_to_test = uf.read()
+        #code_to_test.replace(startting_code, "test_set")
+    
+        exec(code_to_test)
+        captured = capsys.readouterr()
+>       assert captured.out == "8\n"
+E       AssertionError: assert '9\n' == '8\n'
+E         - 8
+E         + 9
+
+challenges/2.2/test_solution.py:21: AssertionError
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution - AssertionError: asser...
+. Error:
+test_user,2.2,AssertionError(): test failed: F                                                                        [100%]
+=================================== FAILURES ===================================
+________________________________ test_solution _________________________________
+
+user_file = 'user_submissions/test_user/2.2.py'
+capsys = <_pytest.capture.CaptureFixture object at 0x721e19770490>
+
+    def test_solution(user_file: str, capsys):
+        """run the user submitted code to test it."""
+        my_dir, _ = os.path.split(__file__)
+        _, my_id = os.path.split(my_dir)
+    
+    
+        challenge_data = challenge_details(my_id)
+        startting_code = challenge_data.get("startting_code", '')
+        with open(user_file, "rt", encoding='utf-8') as uf:
+            code_to_test = uf.read()
+        #code_to_test.replace(startting_code, "test_set")
+    
+        exec(code_to_test)
+        captured = capsys.readouterr()
+>       assert captured.out == "8\n"
+E       AssertionError: assert '9\n' == '8\n'
+E         - 8
+E         + 9
+
+challenges/2.2/test_solution.py:21: AssertionError
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution - AssertionError: asser...
+. Error:
+test_user,2.2,AssertionError(): test failed: F                                                                        [100%]
+=================================== FAILURES ===================================
+________________________________ test_solution _________________________________
+
+user_file = 'user_submissions/test_user/2.2.py'
+capsys = <_pytest.capture.CaptureFixture object at 0x726071ca4b90>
+
+    def test_solution(user_file: str, capsys):
+        """run the user submitted code to test it."""
+        my_dir, _ = os.path.split(__file__)
+        _, my_id = os.path.split(my_dir)
+    
+    
+        challenge_data = challenge_details(my_id)
+        startting_code = challenge_data.get("startting_code", '')
+        with open(user_file, "rt", encoding='utf-8') as uf:
+            code_to_test = uf.read()
+        #code_to_test.replace(startting_code, "test_set")
+    
+        exec(code_to_test)
+        captured = capsys.readouterr()
+>       assert captured.out == "8\n"
+E       AssertionError: assert '9\n' == '8\n'
+E         - 8
+E         + 9
+
+challenges/2.2/test_solution.py:21: AssertionError
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution - AssertionError: asser...
+. Error:
+test_user,2.2,AssertionError(): test failed: F                                                                        [100%]
+=================================== FAILURES ===================================
+________________________________ test_solution _________________________________
+
+user_file = 'user_submissions/test_user/2.2.py'
+capsys = <_pytest.capture.CaptureFixture object at 0x76c5f2e641d0>
+
+    def test_solution(user_file: str, capsys):
+        """run the user submitted code to test it."""
+        my_dir, _ = os.path.split(__file__)
+        _, my_id = os.path.split(my_dir)
+    
+    
+        challenge_data = challenge_details(my_id)
+        startting_code = challenge_data.get("startting_code", '')
+        with open(user_file, "rt", encoding='utf-8') as uf:
+            code_to_test = uf.read()
+        #code_to_test.replace(startting_code, "test_set")
+    
+        exec(code_to_test)
+        captured = capsys.readouterr()
+>       assert captured.out == "8\n"
+E       AssertionError: assert '9\n' == '8\n'
+E         - 8
+E         + 9
+
+challenges/2.2/test_solution.py:21: AssertionError
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution - AssertionError: asser...
+. Error:
+test_user,2.2,AssertionError(): test failed: F                                                                        [100%]
+=================================== FAILURES ===================================
+/workspaces/python-challenges/challenges/2.2/test_solution.py:21: AssertionError: assert '9\n' == '8\n'
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution - AssertionError: asser...
+. Error:
+test_user,2.2,Test passed.. Error:
+test_user,2.2,AssertionError(): test failed: F                                                                        [100%]
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution - AssertionError: asser...
+. Error:
+test_user,2.2,AssertionError(): test failed: F                                                                        [100%]
+=================================== FAILURES ===================================
+________________________________ test_solution _________________________________
+challenges/2.2/test_solution.py:21: in test_solution
+    assert captured.out == "8\n"
+E   AssertionError: assert '9\n' == '8\n'
+E     - 8
+E     + 9
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution - AssertionError: asser...
+. Error:
+test_user,2.2,AssertionError(): test failed: F                                                                        [100%]
+=================================== FAILURES ===================================
+________________________________ test_solution _________________________________
+challenges/2.2/test_solution.py:23: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '9\n' == '8\n'
+E     - 8
+E     + 9
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution - AssertionError: asser...
+. Error:
+test_user,2.2,AssertionError(): test failed: FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '9\n' == 6
+______________________ test_solution[a=10\nb=11\nc=12-36] ______________________
+challenges/2.2/test_solution.py:24: in test_solution
+    exec(code_to_test)
+E     File "<string>", line 3
+E       c=12print(9)
+E          ^
+E   SyntaxError: invalid decimal literal
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12-36] - ...
+. Error:
+test_user,2.2,AssertionError(): test failed: FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '9\n' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-36] _____________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '9\n' == 36
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-36]
+. Error:
+test_user,2.2,AssertionError(): test failed: FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '6\n' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-36] _____________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '33\n' == 36
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-36]
+. Error:
+test_user,2.2,AssertionError(): test failed: FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == expected_output+"\n"
+E   TypeError: unsupported operand type(s) for +: 'int' and 'str'
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == expected_output+"\n"
+E   TypeError: unsupported operand type(s) for +: 'int' and 'str'
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - Ty...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+. Error:
+test_user,2.2,Test passed.. Error:
+test_user,2.2,AssertionError(): test failed: FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '7\n' == '6\n'
+E     - 6
+E     + 7
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '34\n' == '33\n'
+E     - 33
+E     + 34
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+. Error:
+test_user,2.2,Test passed.. Error:
+test_user,2.2,AssertionError(): test failed: .F                                                                       [100%]
+=================================== FAILURES ===================================
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '15\n' == '33\n'
+E     - 33
+E     + 15
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+. Error:
+test_user,2.2,AssertionError(): test failed: FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '' == '6\n'
+E     - 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '' == '33\n'
+E     - 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+. Error:
+test_user,2.2,AssertionError(): test failed: FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '' == '6\n'
+E     
+E     - 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '' == '33\n'
+E     
+E     - 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+. Error:
+test_user,2.2,AssertionError(): test failed: FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '' == '6\n'
+E     
+E     - 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '' == '33\n'
+E     
+E     - 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+. Error:
+test_user,2.2,AssertionError(): test failed: FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '' == '6\n'
+E     
+E     - 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '' == '33\n'
+E     
+E     - 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+. Error:
+test_user,2.2,. Error:test failed: FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '' == '6\n'
+E     
+E     - 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '' == '33\n'
+E     
+E     - 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+
+test_user,2.2,. Error:test failed: FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '' == '6\n'
+E     
+E     - 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '' == '33\n'
+E     
+E     - 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '' == '6\n'
+E     
+E     - 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:28: in test_solution
+    assert received == f"{expected_output}\n"
+E   AssertionError: assert '' == '33\n'
+E     
+E     - 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,Test passed.. Error:
+test_user,2.2,Test passed.. Error:
+test_user,2.2,Test passed.. Error:
+test_user,2.2,Test passed.. Error:
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,Test passed.. Error:
+test_user,2.2,Test passed.. Error:
+test_user,2.2,Test passed.. Error:
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+=========================== short test summary info ============================
+FAILED challenges/2.2/test_solution.py::test_solution[a=1\nb=2\nc=3\n-6] - As...
+FAILED challenges/2.2/test_solution.py::test_solution[a=10\nb=11\nc=12\n-33]
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '' == 33
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '6' == 6
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '6' == 33
+test_user,2.2,. Error:test failed: 
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received == expected_output
+E   AssertionError: assert '6' == '33'
+E     
+E     - 33
+E     + 6
+test_user,2.2,. Error:test failed: 
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_solution[a=1\nb=2\nc=3\n-6] _______________________
+challenges/2.2/test_solution.py:23: in test_solution
+    exec(code_to_test, globals=None, locals=None)
+E   TypeError: 'globals' is an invalid keyword argument for exec()
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:23: in test_solution
+    exec(code_to_test, globals=None, locals=None)
+E   TypeError: 'globals' is an invalid keyword argument for exec()
+test_user,2.2,. Error:test failed: 
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '6' == '33'
+E     
+E     - 33
+E     + 6
+test_user,2.2,. Error:test failed: 
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '6' == '33'
+E     
+E     - 33
+E     + 6
+test_user,2.2,. Error:test failed: 
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '6' == '33'
+E     
+E     - 33
+E     + 6
+test_user,2.2,. Error:test failed: 
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '6' == '33'
+E     
+E     - 33
+E     + 6
+test_user,2.2,. Error:test failed: 
+== FAILURES ===================================
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '6' == '33'
+E     
+E     - 33
+E     + 6
+test_user,2.2,. Error:test failed: 
+did not execute
+test_user,2.2,. Error:test failed: 
+did not execute
+test_user,2.2,. Error:test failed: 
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '6' == '33'
+E     
+E     - 33
+E     + 6
+test_user,2.2,. Error:test failed: 
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '6' == '33'
+E     
+E     - 33
+E     + 6
+test_user,2.2,. Error:TEST FAILED: 
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '6' == '33'
+E     
+E     - 33
+E     + 6
+test_user,2.2,. Error:TEST FAILED: 
+_____________________ test_solution[a=10\nb=11\nc=12\n-33] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '6' == '33'
+E     
+E     - 33
+E     + 6
+test_user,2.2,. Error:TEST FAILED: 
+_____________________ test_solution[
+a=10
+b=11
+c=12
+-33
+] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '6' == '33'
+E     
+E     - 33
+E     + 6
+test_user,2.2,. Error:TEST FAILED: 
+_____________________ test_solution[
+a=10
+b=11
+c=12
+-33
+] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '6' == '33'
+E     
+E     - 33
+E     + 6
+test_user,2.2,. Error:TEST FAILED: 
+_______________________ test_solution[
+a=1
+b=2
+c=3
+-6
+] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '6'
+E     
+E     - 6
+E     + 8
+_____________________ test_solution[
+a=10
+b=11
+c=12
+-33
+] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '33'
+E     
+E     - 33
+E     + 8
+test_user,2.2,. Error:TEST FAILED: 
+_______________________ test_solution[
+a=1
+b=2
+c=3
+-6
+] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '6'
+E     
+E     - 6
+E     + 8
+_____________________ test_solution[
+a=10
+b=11
+c=12
+-33
+] _____________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '33'
+E     
+E     - 33
+E     + 8
+test_user,2.2,. Error:TEST FAILED: 
+_______________________ test_solution[
+a=1
+b=2
+c=3
+-6
+] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '6'
+E     
+E     - 6
+E     + 8
+___________________ test_solution[
+a=10
+b=11
+c=12
+-33
+32
+] ___________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '33\n32'
+E     
+E     + 8
+E     - 33
+E     - 32
+test_user,2.2,. Error:TEST FAILED: 
+_______________________ test_solution[
+a=1
+b=2
+c=3
+-6
+] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '6'
+E     
+E     - 6
+E     + 8
+___________________ test_solution[
+a=10
+b=11
+c=12
+-33
+32
+] ___________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '33\n32'
+E     
+E     + 8
+E     - 33
+E     - 32
+test_user,2.2,. Error:TEST FAILED: 
+_______________________ test_solution[
+a=1
+b=2
+c=3
+-6
+] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '6'
+E     
+E     - 6
+E     + 8
+___________________ test_solution[
+a=10
+b=11
+c=12
+-33
+32
+] ___________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '33\n32'
+E     
+E     + 8
+E     - 33
+E     - 32
+test_user,2.2,. Error:TEST FAILED: 
+_______________________ test_solution[
+a=1
+b=2
+c=3
+-6
+] _______________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '6'
+E     
+E     - 6
+E     + 8
+__________________ test_solution[
+a=10
+b=11
+c=12
+-33
+-32
+] ___________________
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '33\n-32'
+E     
+E     + 8
+E     - 33
+E     - -32
+test_user,2.2,. Error:TEST FAILED: 
+==================================== ERRORS ====================================
+_______________ ERROR collecting challenges/2.2/test_solution.py _______________
+challenges/2.2/test_solution.py:10: in <lambda>
+    ], ids=lambda params: f"Condition: {params[0]}, Expected: {params[1]}")
+E   TypeError: 'int' object is not subscriptable
+
+The above exception was the direct cause of the following exception:
+/home/vscode/.local/lib/python3.11/site-packages/pluggy/_hooks.py:513: in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+/home/vscode/.local/lib/python3.11/site-packages/pluggy/_manager.py:120: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:248: in pytest_pycollect_makeitem
+    return list(collector._genfunctions(name, obj))
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:461: in _genfunctions
+    self.ihook.pytest_generate_tests.call_extra(methods, dict(metafunc=metafunc))
+/home/vscode/.local/lib/python3.11/site-packages/pluggy/_hooks.py:574: in call_extra
+    return self._hookexec(self.name, hookimpls, kwargs, firstresult)
+/home/vscode/.local/lib/python3.11/site-packages/pluggy/_manager.py:120: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:118: in pytest_generate_tests
+    metafunc.parametrize(*marker.args, **marker.kwargs, _param_mark=marker)
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:1239: in parametrize
+    ids = self._resolve_parameter_set_ids(
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:1360: in _resolve_parameter_set_ids
+    return id_maker.make_unique_parameterset_ids()
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:896: in make_unique_parameterset_ids
+    resolved_ids = list(self._resolve_ids())
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:931: in _resolve_ids
+    yield "-".join(
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:932: in <genexpr>
+    self._idval(val, argname, idx)
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:938: in _idval
+    idval = self._idval_from_function(val, argname, idx)
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:962: in _idval_from_function
+    raise ValueError(msg) from e
+E   ValueError: challenges/2.2/test_solution.py::test_solution: error raised while trying to determine id of parameter 'expected_output' at position 0
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+test_user,2.2,. Error:TEST FAILED: 
+_ test_solution[Condition: a=1\nb=2\nc=3\n, Expected: a=1\nb=2\nc=3\n-Condition: 6, Expected: 6] _
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '6'
+E     
+E     - 6
+E     + 8
+_ test_solution[Condition: a=10\nb=11\nc=12\n, Expected: a=10\nb=11\nc=12\n-Condition: 33\n-32, Expected: 33\n-32] _
+challenges/2.2/test_solution.py:27: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '33\n-32'
+E     
+E     + 8
+E     - 33
+E     - -32
+test_user,2.2,. Error:TEST FAILED: 
+==================================== ERRORS ====================================
+_______________ ERROR collecting challenges/2.2/test_solution.py _______________
+challenges/2.2/test_solution.py:10: in <lambda>
+    ], ids=lambda *params: f"Condition: {params[0]}, Expected: {params[1]}")
+E   IndexError: tuple index out of range
+
+The above exception was the direct cause of the following exception:
+/home/vscode/.local/lib/python3.11/site-packages/pluggy/_hooks.py:513: in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+/home/vscode/.local/lib/python3.11/site-packages/pluggy/_manager.py:120: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:248: in pytest_pycollect_makeitem
+    return list(collector._genfunctions(name, obj))
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:461: in _genfunctions
+    self.ihook.pytest_generate_tests.call_extra(methods, dict(metafunc=metafunc))
+/home/vscode/.local/lib/python3.11/site-packages/pluggy/_hooks.py:574: in call_extra
+    return self._hookexec(self.name, hookimpls, kwargs, firstresult)
+/home/vscode/.local/lib/python3.11/site-packages/pluggy/_manager.py:120: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:118: in pytest_generate_tests
+    metafunc.parametrize(*marker.args, **marker.kwargs, _param_mark=marker)
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:1239: in parametrize
+    ids = self._resolve_parameter_set_ids(
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:1360: in _resolve_parameter_set_ids
+    return id_maker.make_unique_parameterset_ids()
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:896: in make_unique_parameterset_ids
+    resolved_ids = list(self._resolve_ids())
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:931: in _resolve_ids
+    yield "-".join(
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:932: in <genexpr>
+    self._idval(val, argname, idx)
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:938: in _idval
+    idval = self._idval_from_function(val, argname, idx)
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:962: in _idval_from_function
+    raise ValueError(msg) from e
+E   ValueError: challenges/2.2/test_solution.py::test_solution: error raised while trying to determine id of parameter 'start_condition' at position 0
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+test_user,2.2,. Error:TEST FAILED: 
+____________ test_solution[
+Condition: a=1
+b=2
+c=3
+-Expected: 6
+] _____________
+challenges/2.2/test_solution.py:39: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '6'
+E     
+E     - 6
+E     + 8
+________ test_solution[
+Condition: a=10
+b=11
+c=12
+-Expected: 33
+-32
+] ________
+challenges/2.2/test_solution.py:39: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '33\n-32'
+E     
+E     + 8
+E     - 33
+E     - -32
+test_user,2.2,. Error:TEST FAILED: 
+____________ test_solution[
+Condition: a=1
+b=2
+c=3
+-Expected: 6
+] _____________
+challenges/2.2/test_solution.py:48: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '6'
+E     
+E     - 6
+E     + 8
+________ test_solution[
+Condition: a=10
+b=11
+c=12
+-Expected: 33
+-32
+] ________
+challenges/2.2/test_solution.py:48: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '33\n-32'
+E     
+E     + 8
+E     - 33
+E     - -32
+test_user,2.2,. Error:TEST FAILED: 
+____________ test_solution[
+Condition: a=1
+b=2
+c=3
+-Expected: 6
+] _____________
+challenges/2.2/test_solution.py:29: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '6'
+E     
+E     - 6
+E     + 8
+________ test_solution[
+Condition: a=10
+b=11
+c=12
+-Expected: 33
+-32
+] ________
+challenges/2.2/test_solution.py:29: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '33\n-32'
+E     
+E     + 8
+E     - 33
+E     - -32
+test_user,2.2,. Error:TEST FAILED: 
+___________ test_solution[
+Condition:
+a=1
+b=2
+c=3
+-Expected:
+6
+] ____________
+challenges/2.2/test_solution.py:29: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '6'
+E     
+E     - 6
+E     + 8
+_______ test_solution[
+Condition:
+a=10
+b=11
+c=12
+-Expected:
+33
+-32
+] _______
+challenges/2.2/test_solution.py:29: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '33\n-32'
+E     
+E     + 8
+E     - 33
+E     - -32
+test_user,2.2,. Error:TEST FAILED: 
+___________ test_solution[
+Condition:
+a=1
+b=2
+c=3
+-Expected:
+6
+] ____________
+challenges/2.2/test_solution.py:32: in test_solution
+    starting_code = challenge_data.get("starting_code", '')
+E   AttributeError: 'function' object has no attribute 'get'
+_______ test_solution[
+Condition:
+a=10
+b=11
+c=12
+-Expected:
+33
+-32
+] _______
+challenges/2.2/test_solution.py:32: in test_solution
+    starting_code = challenge_data.get("starting_code", '')
+E   AttributeError: 'function' object has no attribute 'get'
+test_user,2.2,. Error:TEST FAILED: 
+___________ test_solution[
+Condition:
+a=1
+b=2
+c=3
+-Expected:
+6
+] ____________
+challenges/2.2/test_solution.py:32: in test_solution
+    starting_code = challenge_data.get("starting_code", '')
+E   AttributeError: 'function' object has no attribute 'get'
+_______ test_solution[
+Condition:
+a=10
+b=11
+c=12
+-Expected:
+33
+-32
+] _______
+challenges/2.2/test_solution.py:32: in test_solution
+    starting_code = challenge_data.get("starting_code", '')
+E   AttributeError: 'function' object has no attribute 'get'
+test_user,2.2,. Error:TEST FAILED: 
+___________ test_solution[
+Condition:
+a=1
+b=2
+c=3
+-Expected:
+6
+] ____________
+challenges/2.2/test_solution.py:40: in test_solution
+    starting_code = challenge_data.get("starting_code", '')
+E   AttributeError: 'function' object has no attribute 'get'
+_______ test_solution[
+Condition:
+a=10
+b=11
+c=12
+-Expected:
+33
+-32
+] _______
+challenges/2.2/test_solution.py:40: in test_solution
+    starting_code = challenge_data.get("starting_code", '')
+E   AttributeError: 'function' object has no attribute 'get'
+test_user,2.2,. Error:TEST FAILED: 
+___________ test_solution[
+Condition:
+a=1
+b=2
+c=3
+-Expected:
+6
+] ____________
+challenges/2.2/test_solution.py:40: in test_solution
+    starting_code = challenge_data.get("starting_code", '')
+E   AttributeError: 'function' object has no attribute 'get'
+_______ test_solution[
+Condition:
+a=10
+b=11
+c=12
+-Expected:
+33
+-32
+] _______
+challenges/2.2/test_solution.py:40: in test_solution
+    starting_code = challenge_data.get("starting_code", '')
+E   AttributeError: 'function' object has no attribute 'get'
+test_user,2.2,. Error:TEST FAILED: 
+___________ test_solution[
+Condition:
+a=1
+b=2
+c=3
+-Expected:
+6
+] ____________
+challenges/2.2/test_solution.py:40: in test_solution
+    starting_code = challenge_data.get("starting_code", '')
+E   AttributeError: 'function' object has no attribute 'get'
+_______ test_solution[
+Condition:
+a=10
+b=11
+c=12
+-Expected:
+33
+-32
+] _______
+challenges/2.2/test_solution.py:40: in test_solution
+    starting_code = challenge_data.get("starting_code", '')
+E   AttributeError: 'function' object has no attribute 'get'
+test_user,2.2,. Error:TEST FAILED: 
+___________ test_solution[
+Condition:
+a=1
+b=2
+c=3
+-Expected:
+6
+] ____________
+challenges/2.2/test_solution.py:40: in test_solution
+    starting_code = challenge_data.get("starting_code", '')
+E   AttributeError: 'function' object has no attribute 'get'
+----------------------------- Captured stdout call -----------------------------
+challenge_data=<function challenge_data at 0x76dce2349e40>
+_______ test_solution[
+Condition:
+a=10
+b=11
+c=12
+-Expected:
+33
+-32
+] _______
+challenges/2.2/test_solution.py:40: in test_solution
+    starting_code = challenge_data.get("starting_code", '')
+E   AttributeError: 'function' object has no attribute 'get'
+----------------------------- Captured stdout call -----------------------------
+challenge_data=<function challenge_data at 0x76dce2349e40>
+test_user,2.2,. Error:TEST FAILED: 
+___________ test_solution[
+Condition:
+a=1
+b=2
+c=3
+-Expected:
+6
+] ____________
+challenges/2.2/test_solution.py:42: in test_solution
+    code_to_test = code_submitted.replace(starting_code, start_condition)
+E   AttributeError: 'function' object has no attribute 'replace'
+----------------------------- Captured stdout call -----------------------------
+challenge_data={'title': 'arithmatic operations', 'goal': 'understand how to combine arithmatic operations', 'description': 'With a, b, c print the result of:\nthe sum of a and b\n the product of b and c\n the c to the power of a', 'notes': 'The output should only calculation results, one result per line.', 'starting_code': '# ***Do not change this part***\na = 3\nb = 5\nc = 10\n# ***End of Do-not-change part***\n', 'expected_output': '8'}
+_______ test_solution[
+Condition:
+a=10
+b=11
+c=12
+-Expected:
+33
+-32
+] _______
+challenges/2.2/test_solution.py:42: in test_solution
+    code_to_test = code_submitted.replace(starting_code, start_condition)
+E   AttributeError: 'function' object has no attribute 'replace'
+----------------------------- Captured stdout call -----------------------------
+challenge_data={'title': 'arithmatic operations', 'goal': 'understand how to combine arithmatic operations', 'description': 'With a, b, c print the result of:\nthe sum of a and b\n the product of b and c\n the c to the power of a', 'notes': 'The output should only calculation results, one result per line.', 'starting_code': '# ***Do not change this part***\na = 3\nb = 5\nc = 10\n# ***End of Do-not-change part***\n', 'expected_output': '8'}
+test_user,2.2,. Error:TEST FAILED: 
+___________ test_solution[
+Condition:
+a=1
+b=2
+c=3
+-Expected:
+6
+] ____________
+challenges/2.2/test_solution.py:42: in test_solution
+    code_to_test = code_submitted.replace(starting_code, start_condition)
+E   AttributeError: 'function' object has no attribute 'replace'
+_______ test_solution[
+Condition:
+a=10
+b=11
+c=12
+-Expected:
+33
+-32
+] _______
+challenges/2.2/test_solution.py:42: in test_solution
+    code_to_test = code_submitted.replace(starting_code, start_condition)
+E   AttributeError: 'function' object has no attribute 'replace'
+test_user,2.2,. Error:TEST FAILED: 
+==================================== ERRORS ====================================
+_______________ ERROR collecting challenges/2.2/test_solution.py _______________
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/python.py:492: in importtestmodule
+    mod = import_path(
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/pathlib.py:591: in import_path
+    importlib.import_module(module_name)
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:690: in _load_unlocked
+    ???
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/assertion/rewrite.py:169: in exec_module
+    source_stat, co = _rewrite_test(fn, self.config)
+/home/vscode/.local/lib/python3.11/site-packages/_pytest/assertion/rewrite.py:349: in _rewrite_test
+    tree = ast.parse(source, filename=strfn)
+/usr/local/lib/python3.11/ast.py:50: in parse
+    return compile(source, filename, mode, flags,
+E     File "/workspaces/python-challenges/challenges/2.2/test_solution.py", line 32
+E       def test_solution(challenge_data: dict, , code_submitted: str, start_condition: str, expected_output: str,
+E                                               ^
+E   SyntaxError: invalid syntax
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+test_user,2.2,. Error:TEST FAILED: 
+___________ test_solution[
+Condition:
+a=1
+b=2
+c=3
+-Expected:
+6
+] ____________
+challenges/2.2/test_solution.py:47: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '6'
+E     
+E     - 6
+E     + 8
+_______ test_solution[
+Condition:
+a=10
+b=11
+c=12
+-Expected:
+33
+-32
+] _______
+challenges/2.2/test_solution.py:47: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '33\n-32'
+E     
+E     + 8
+E     - 33
+E     - -32
+test_user,2.2,. Error:TEST FAILED: 
+___________ test_solution[
+Condition:
+a=1
+b=2
+c=3
+-Expected:
+6
+] ____________
+challenges/2.2/test_solution.py:53: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '6'
+E     
+E     - 6
+E     + 8
+_______ test_solution[
+Condition:
+a=10
+b=11
+c=12
+-Expected:
+33
+-32
+] _______
+challenges/2.2/test_solution.py:53: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '8' == '33\n-32'
+E     
+E     + 8
+E     - 33
+E     - -32
+test_user,2.2,. Error:TEST FAILED: 
+_______ test_solution[
+Condition:
+a=10
+b=11
+c=12
+-Expected:
+33
+-32
+] _______
+challenges/2.2/test_solution.py:53: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '33' == '33\n-32'
+E     
+E     - 33
+E     ?   -
+E     + 33
+E     - -32
+test_user,2.2,. Error:TEST FAILED: 
+_______ test_solution[
+Condition:
+a=10
+b=11
+c=12
+-Expected:
+33
+-32
+] _______
+challenges/2.2/test_solution.py:53: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '33' == '33\n-32'
+E     
+E     - 33
+E     ?   -
+E     + 33
+E     - -32
+test_user,2.2,. Error:TEST FAILED: 
+___________ test_solution[
+Condition:
+a=1
+b=2
+c=3
+-Expected:
+6
+] ____________
+challenges/2.2/test_solution.py:53: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '' == '6'
+E     
+E     - 6
+_______ test_solution[
+Condition:
+a=10
+b=11
+c=12
+-Expected:
+33
+-32
+] _______
+challenges/2.2/test_solution.py:53: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '' == '33\n-32'
+E     
+E     - 33
+E     - -32
+test_user,2.2,. Error:TEST FAILED: 
+___________ test_solution[
+Condition:
+a=1
+b=2
+c=3
+-Expected:
+6
+] ____________
+challenges/2.2/test_solution.py:53: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '33\n-32' == '6'
+E     
+E     - 6
+E     + 33
+E     + -32
+test_user,2.2,. Error:TEST FAILED: 
+___________ test_solution[
+Condition:
+a=1
+b=2
+c=3
+-Expected:
+6
+] ____________
+challenges/2.2/test_solution.py:53: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '12\n32\n12288\n6\n2\n6' == '6'
+E     
+E     + 12
+E     + 32
+E     + 12288
+E     + 6
+E     + 2
+E       6
+_______ test_solution[
+Condition:
+a=10
+b=11
+c=12
+-Expected:
+33
+-32
+] _______
+challenges/2.2/test_solution.py:53: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '12\n32\n12288\n6\n2\n6' == '33\n-32'
+E     
+E     - 33
+E     - -32
+E     + 12
+E     + 32
+E     + 12288
+E     + 6
+E     + 2
+E     + 6
+test_user,2.2,. Error:TEST FAILED: 
+_ test_solution[Condition:\n# ***Do not change this part***\na = 3\nb = 5\nc = 4\n# ***End of Do-not-change part***\n-Expected:\n12\n32\n12288\n6\n2\n6] _
+utils/generic_test.py:90: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '16\n48\n207360\n20\n5\n2' == '12\n32\n12288\n6\n2\n6'
+E     
+E     - 12
+E     - 32
+E     - 12288
+E     - 6
+E     + 16
+E     ? +...
+E     
+E     ...Full output truncated (8 lines hidden), use '-vv' to show
+___ test_solution[
+Condition:
+a=2
+b=1
+c=3
+-Expected:
+6
+9
+54
+4
+1
+0
+] ____
+utils/generic_test.py:90: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '16\n48\n207360\n20\n5\n2' == '6\n9\n54\n4\n1\n0'
+E     
+E     - 6
+E     + 16
+E     ? +
+E     - 9
+E     - 54
+E     - 4...
+E     
+E     ...Full output truncated (8 lines hidden), use '-vv' to show
+__ test_solution[
+Condition:
+a=-1
+b=0
+c=1
+-Expected:
+0
+-1
+1
+-2
+-2
+0
+] __
+utils/generic_test.py:90: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '16\n48\n207360\n20\n5\n2' == '0\n-1\n1\n-2\n-2\n0'
+E     
+E     - 0
+E     - -1
+E     - 1
+E     + 16
+E     ?  +
+E     - -2...
+E     
+E     ...Full output truncated (7 lines hidden), use '-vv' to show
+test_user,2.2,. Error:TEST FAILED: 
+_ test_solution[Condition:\na=10\nb=2c=4\n-Expected:\n16\n48\n207360\n20\n5\n2] _
+utils/generic_test.py:84: in test_solution
+    exec(code_to_test, None, None)
+E     File "<string>", line 2
+E       b=2c=4
+E         ^
+E   SyntaxError: invalid decimal literal
+test_user,2.2,Test passed.. Error:
+test_user,2.2,. Error:TEST FAILED: 
+_ test_solution[Condition:\na=10\nb=2\nc=4\n-Expected:\n16\n48\n207360\n20\n5\n1] _
+utils/generic_test.py:90: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '16\n48\n207360\n20\n5\n2' == '16\n48\n207360\n20\n5\n1'
+E     
+E       16
+E       48
+E       207360
+E       20
+E       5
+E     - 1
+E     + 2
+test_user,2.2,Test passed.. Error:
+test_user,2.2,. Error:TEST FAILED: 
+_ test_solution[
+Condition:
+a=10
+b=2
+c=4
+-Expected:
+16
+48
+207360
+20
+5
+1
+] _
+utils/generic_test.py:90: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '16\n48\n207360\n20\n5\n2' == '16\n48\n207360\n20\n5\n1'
+E     
+E       16
+E       48
+E       207360
+E       20
+E       5
+E     - 1
+E     + 2

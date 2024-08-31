@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "launchEdge",
+            "type": "shell",
+            "command": "microsoft-edge",
+            "args": [
+                "http://localhost:3000" // Update with your FastAPI app's URL
+            ],
+            "problemMatcher": [],
+            "dependsOn": "Python Debugger: Module"
+        }
+    ]
+}

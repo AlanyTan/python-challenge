@@ -1,0 +1,8 @@
+{
+    "title": "learn to use print()",
+    "goal": "Learn to submit a python program to check it's result.",
+    "description": "Print 'Hello World!' to the console.",
+    "notes": "The output should only include the words, no quotation marks.",
+    "starting_code": "print()",
+    "expected_output": "Hello World!"
+}

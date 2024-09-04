@@ -1,0 +1,9 @@
+{
+    "title": "output literal values",
+    "goal": "understanding the type of literals",
+    "description": "put a literal of the specified type between each tape():\nan integer, and another integera float, and another float 3.14\na complex number \na string, and a byte\nboolean True, and string 'True'None, and string 'None'",
+    "notes": "i.e. print(type(1), type(2.71)) will output: <class 'int'> <class 'float'>",
+    "starting_code": "print(type(), type())\nprint(type(), type())\nprint(type())\nprint(type(), type())\nprint(type(), type())\nprint(type(), type())\n",
+    "expected_output": "<class 'int'> <class 'int'>\n<class 'float'> <class 'float'>\n<class 'complex'>\n<class 'str'> <class 'bytes'>\n<class 'bool'> <class 'str'>\n<class 'NoneType'> <class 'str'>\n",
+    "test_cases": []
+}

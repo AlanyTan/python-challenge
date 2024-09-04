@@ -1,0 +1,6 @@
+print(type(1), type(2))
+print(type(3.14), type(2.71))
+print(type(3 + 4j))
+print(type("words"), type(b"bytes"))
+print(type(True), type('False'))
+print(type(None), type('None'))

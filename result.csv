@@ -2182,3 +2182,249 @@ E       20
 E       5
 E     - 1
 E     + 2
+test_user,2/1,Test passed.. Error:
+test_user,2/1,. Error:TEST FAILED: 
+_ test_solution[
+Condition:
+print(,)
+print()
+print()
+print(,)-Expected:
+3 3.14
+(3+4j)
+words b'bytes'
+True False
+None
+
+] _
+utils/generic_test.py:90: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '3 3.14\n(3+4...mething wrong' == '3 3.14\n(3+4...False\nNone\n'
+E     
+E       3 3.14
+E       (3+4j)
+E       words b'bytes'
+E       True False
+E     - None
+E     + something wrong
+test_user,2/1,. Error:TEST FAILED: 
+_ test_solution[
+Condition:
+print(,)
+print()
+print()
+print(,)-Expected:
+3 3.14
+(3+4j)
+words b'bytes'
+True False
+None
+
+] _
+utils/generic_test.py:90: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '3 3.14\n(3+4...e False\nNone' == '3 3.14\n(3+4...False\nNone\n'
+E     
+E     Skipping 33 identical leading characters in diff, use -v to show
+E        False
+E     - None
+E     ?     -
+E     + None
+test_user,2/1,. Error:TEST FAILED: 
+_ test_solution[
+Condition:
+print(,)
+print()
+print()
+print(,)-Expected:
+3 3.14
+(3+4j)
+words b'bytes'
+True False
+None
+
+] _
+utils/generic_test.py:90: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '3 3.14\n(3+4...e False\nNone' == '3 3.14\n(3+4...False\nNone\n'
+E     
+E     Skipping 33 identical leading characters in diff, use -v to show
+E        False
+E     - None
+E     ?     -
+E     + None
+test_user,2/1,. Error:TEST FAILED: 
+_ test_solution[
+Condition:
+print(,)
+print()
+print()
+print(,)-Expected:
+3 3.14
+(3+4j)
+words b'bytes'
+True False
+None
+
+] _
+utils/generic_test.py:90: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '3 3.14\n(3+4...e False\nNone' == '3 3.14\n(3+4...False\nNone\n'
+E     
+E     Skipping 33 identical leading characters in diff, use -v to show
+E        False
+E     - None
+E     ?     -
+E     + None
+test_user,2/1,Test passed.. Error:
+test_user,2/1,Test passed.. Error:
+test_user,2/1,. Error:TEST FAILED: 
+did not execute
+test_user,2/1,. Error:TEST FAILED: 
+did not execute
+test_user,2/1,Test passed.. Error:
+test_user,2/1,Test passed.. Error:
+test_user,2/1,. Error:TEST FAILED: 
+Test returned Error 1:
+_ test_solution[
+Condition:
+print(,)
+print()
+print(,)
+print(,)-Expected:
+3 3.14
+(3+4j)
+words b'bytes'
+True False
+None
+
+] _
+utils/generic_test.py:90: in test_solution
+    assert received_output == expected_output
+E   assert "3 3.14\n(3+4...'\nTrue False" == '3 3.14\n(3+4...e False\nNone'
+E     
+E       3 3.14
+E       (3+4j)
+E       words b'bytes'
+E     - True False
+E     ?           -
+E     + True False
+E     - None
+test_user,2/1,Test passed.. Error:
+test_user,2/1,Test passed.. Error:
+test_user,2/1,. Error:TEST FAILED (rc=1):
+_ test_solution[
+Condition:
+print(,)
+print()
+print(,)
+print(,)-Expected:
+3 3.14
+(3+4j)
+words b'bytes'
+True False
+None
+
+] _
+utils/generic_test.py:90: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '3 3.14\n(3+4...se\nNone None' == '3 3.14\n(3+4...e False\nNone'
+E     
+E     Skipping 33 identical leading characters in diff, use -v to show
+E        False
+E     - None
+E     + None None
+test_user,2/1,. Error:TEST FAILED (rc=1):
+_ test_solution[
+Condition:
+print(,)
+print()
+print(,)
+print(,)
+-Expected:
+3 3.14
+(3+4j)
+words b'bytes'
+True False
+None
+
+] _
+utils/generic_test.py:90: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '3 3.14\n(3+4...se\nNone None' == '3 3.14\n(3+4...e False\nNone'
+E     
+E     Skipping 33 identical leading characters in diff, use -v to show
+E        False
+E     - None
+E     + None None
+test_user,2/1,. Error:TEST FAILED (rc=1):
+_ test_solution[
+Condition:
+print(,)
+print()
+print(,)
+print(,)
+-Expected:
+3 3.14
+(3+4j)
+words b'bytes'
+True False
+None
+
+] _
+utils/generic_test.py:90: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '3 3.14\n(3+4...se\nNone None' == '3 3.14\n(3+4...e False\nNone'
+E     
+E     Skipping 33 identical leading characters in diff, use -v to show
+E        False
+E     - None
+E     + None None
+test_user,2/1,. Error:TEST FAILED (rc=1):
+_ test_solution[
+Condition:
+print(,)
+print()
+print(,)
+print(,)
+-Expected:
+3 3.14
+(3+4j)
+words b'bytes'
+True False
+None
+
+] _
+utils/generic_test.py:90: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '3 3.14\n(3+4...se\nNone None' == '3 3.14\n(3+4...e False\nNone'
+E     
+E     Skipping 33 identical leading characters in diff, use -v to show
+E        False
+E     - None
+E     + None None
+test_user,2/1,. Error:TEST FAILED (rc=1):
+_ test_solution[
+***Start Condition***:
+print(,)
+print()
+print(,)
+print(,)
+-###Expected###:
+3 3.14
+(3+4j)
+words b'bytes'
+True False
+None
+
+] _
+utils/generic_test.py:88: in test_solution
+    assert received_output == expected_output
+E   AssertionError: assert '3 3.14\n(3+4...se\nNone None' == '3 3.14\n(3+4...e False\nNone'
+E     
+E     Skipping 33 identical leading characters in diff, use -v to show
+E        False
+E     - None
+E     + None None
+test_user,2/1,Test passed.. Error:
+test_user,2/2,Test passed.. Error:

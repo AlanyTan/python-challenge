@@ -17,6 +17,7 @@
             "request": "launch",
             "envFile":"${workspaceFolder}/.env",
             "env": {
+                "PYTHONPATH": "${workspaceFolder}",
                 "PYDEVD_DISABLE_FILE_VALIDATION": "1"
             },
             "program": "${file}",

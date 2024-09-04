@@ -1,7 +1,5 @@
 """utility tools to be used by tests"""
 from typing import Callable
-import json
-import os
 import pytest
 from config import config
 from .common import challenge_details
@@ -12,9 +10,9 @@ def py_param_id_format_factory() -> Callable[..., str]:
 
     >>> id_format = py_param_id_format_factory()
     >>> id_format("ABC")
-    'Condition:\\nABC'
+    '***Start Condition***:\\nABC'
     >>> id_format("123")
-    'Expected:\\n123'
+    '###Expected###:\\n123'
     """
     is_key = True
 
@@ -23,10 +21,10 @@ def py_param_id_format_factory() -> Callable[..., str]:
         nonlocal is_key  # Use nonlocal to modify the enclosed variable
         if is_key:
             is_key = False
-            return f"Condition:\n{arg}"
+            return f"***Start Condition***:\n{arg}"
         else:
             is_key = True
-            return f"Expected:\n{arg}"
+            return f"###Expected###:\n{arg}"
 
     return id_format
 
@@ -85,6 +83,6 @@ def test_solution(challenge_data: dict, code_submitted: str,
     captured = capsys.readouterr()
     received_output = captured.out.strip()
 
-    expected_output = f"{expected_output}"
+    expected_output = f"{expected_output.strip()}"
 
     assert received_output == expected_output

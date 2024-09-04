@@ -1,7 +1,7 @@
 """server app for serving challenge page and check results"""
 import os
 import json
-from fastapi import FastAPI, Header, Request, Form
+from fastapi import FastAPI, Header, Request
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -25,13 +25,18 @@ class Submission(BaseModel):
     code: str
 
 
-@app.get("/challenges/{challenge_id}", response_class=HTMLResponse)
-async def read_challenge(request: Request, challenge_id: str):
+@app.get("/challenges/{challenge_id:path}", response_class=HTMLResponse)
+async def read_challenge(request: Request, challenge_id: str) -> HTMLResponse:
     """return the page of the given challenge. challenge_id must exist"""
     # Load challenge data from JSON file
-    with open(f"{config.CHALLENGE_DIR}/{challenge_id}/problem.json",
-              encoding='utf-8') as f:
-        challenge_data = json.load(f)
+    challenge_file = (f"{config.CHALLENGE_DIR}/{challenge_id}"
+                      f"/{config.PROBLEM_FILENAME}")
+    if os.path.isfile(challenge_file):
+        with open(challenge_file, encoding='utf-8') as f:
+            challenge_data = json.load(f)
+    else:
+        return HTMLResponse(f"Challenge {challenge_id} not found.",
+                            status_code=404)
 
     return templates.TemplateResponse("challenge.html", {
         "request": request,

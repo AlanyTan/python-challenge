@@ -1,0 +1,5 @@
+print(3, 3.14)
+print(3 + 4j)
+print("words", b"bytes")
+print(True, False)
+print(None)

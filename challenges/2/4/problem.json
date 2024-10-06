@@ -1,0 +1,10 @@
+{
+    "title": "logical operations and short circuit",
+    "goal": "understanding the logical values, Truthy, Falsy, and operations and short circuit",
+    "description": "This challenge will require you to complete the followingcode by adding \nyour answers to the right side of the = on the lines started with answer_,\n i.e.:\nanswer_is_a_bool_type = False  # because a is int type\nanswer_a_and_b_is_of_type = 'float'  # because a is Truthy, b is Falsy, \n# so, and  returns the value of b (0.0) which is of type float\n",
+    "notes": "when answering a type question use quotation marks i.e. 'int'; it is expected that running this program does not produce any output.",
+    "condition_code": "a = 1\nb = 0.0\nc = '0'\nd = ''\ne = True\nf = 'False'\ng = None\n",
+    "starting_code": "# given the above values of variable a to g, complete the assignment \n#   statements started with answer_ by adding the actual answer:\n\n# assign either True or False to the answer_ variablers below about a and (not a)\nanswer_is_a_bool_type = \nanswer_is_not_a_bool_type = \n\n# assign either True or False to the answer_ variables below about b, c, d, e and f\nanswer_is_b_Truthy = \nanswer_is_c_Truthy = \nanswer_is_d_Truthy = \nanswer_is_e_Truthy = \nanswer_is_f_Truthy = \nanswer_is_g_Truthy = \n\n# assign the data type to the following answer_ variables \n# possible answers are 'int', 'float', 'str', 'bool', 'None'\na_and_b = a and b\nanswer_a_and_b_is_of_type = \n\nb_or_c = b or c\nanswer_b_or_c_is_of_type = \n\nnot_d_or_2e = not d or e * 2\nanswer_not_d_or_2e_is_of_type = \n\nf_and_not_g = f and not g\nanswer_f_and_not_g_is_of_type = \n\nb_or_not_d_and_2e = b or not d and e * 2\nanswer_b_or_not_d_and_2e_is_of_type = \n",
+    "expected_output": "",
+    "test_cases": []
+}

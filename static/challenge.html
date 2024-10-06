@@ -132,7 +132,6 @@
         text-align: center;
         align-content: center;
       }
-
       .resize-handle::before { /* Add a pseudo-element for the visual cue */
         content: "";
         position: relative;
@@ -249,8 +248,8 @@
       </span>
       <p id="goal" style="text-align: left;line-height: 0.8;">Goal: {{ goal }}</p>
       Description:
-      <pre id="intro" style="align-content: start;line-height: 1.0;"> {{ description }} </pre>
-      <p id="warning" style="text-align: left;font-style: italic;line-height: 0.8;">Notes: {{ notes }}</p>
+      <pre id="intro" style="align-content: start;line-height: 1.0;">{{ description }}</pre>
+      <p id="warning" style="text-align: left;font-style: italic;line-height: 0.8;white-space: pre-line;">Notes: {{ notes }}</p>
     </div>
 
     <div class="resize-handle" id="resizeIntroHandle"></div>
@@ -278,7 +277,7 @@
       <button id="run" onclick="evaluatePython()" title="Run(Ctrl+Enter)" style="color: green;" disabled>&#x25B6;</button>
       | <button id="save-virtual-file" onclick="showFSContents('.', 'save')">Save virtual file</button>
       | <button id="open-virtual-file" onclick="showFSContents()">Open virtual file</button>
-      | <button id="open-book-example" style="background-color:khaki;" onclick="showRepoContents()">Open Examples</button>
+      | <button id="open-book-example" style="background-color:khaki;" onclick="showRepoContents('',stdlibModuleNames)">Open Examples</button>
       | <button id="submit-button" style="background-color:antiquewhite;" onclick="submitCode()">Submit Code for evaluations</button>
       | <button id="upload-file-button" style="background-color:antiquewhite;" onclick="uploadFileSelector()" hidden>传本机文件到虚拟机</button>
       | <button id="download-file-button" style="background-color: antiquewhite;" onclick="downloadAllFilesAsZip()" hidden>传虚拟机文件到本机(ZIP)</button>
@@ -298,7 +297,12 @@
       // Function to create a new CodeMirror instance
       function createCodeMirror(tabId) {
         const codeEditorWrapper = document.querySelector(`.code-editor-wrapper[data-tab-id="${tabId}"]`);
-        const textarea = document.getElementById('code-editer-textarea');
+        const textarea = document.createElement('textarea');
+        if (tabId == 1) {
+          firstTextArea = document.getElementById('code-editer-textarea');
+          textarea.value = firstTextArea.value;
+        }
+        codeEditorWrapper.appendChild(textarea);
         const editor = CodeMirror.fromTextArea(textarea, {
           lineNumbers: true,
           mode: { name: "python", version: 3, singleLineStringErrors: false },
@@ -308,8 +312,8 @@
         return editor;
       }
 
-      let buttonOpenText = "打开";
-      let buttonSaveText = "保存";
+      let buttonOpenText = "Open";
+      let buttonSaveText = "Save";
       function showPopup(mode="open") {
         if (mode === "open") {
           document.getElementById('file-list-popup-ok').innerText = buttonOpenText;
@@ -338,7 +342,7 @@
         window.editor.setOption('readOnly', false);
       }
 
-      let alertProvideFilename = "请输入文件名";
+      let alertProvideFilename = "Please enter file name";
       function confirmPopup() {
         const fileName = document.getElementById('virtual-file-name').value;
         if (fileName.trim() === '') {
@@ -504,7 +508,7 @@
         console.log(`stdout_func is called with ${output_}`)
         const styledTextDiv = document.getElementById('styledText');
         const hiddenTextarea = document.getElementById('output');
-        styledTextDiv.innerHTML += output_ + "<br>";
+        styledTextDiv.innerHTML += output_.replace('<', '&lt;').replace('>', '&gt;')  + "<br>";
         hiddenTextarea.value += output_ + "\n";
         scrollToBottom(styledTextDiv);
       };
@@ -512,7 +516,7 @@
       const stderr_func = (err) => {
         const styledTextDiv = document.getElementById('styledText');
         const hiddenTextarea = document.getElementById('output');
-        styledTextDiv.innerHTML += '<span class="red-text">' + err + "</span><br>";
+        styledTextDiv.innerHTML += '<span class="red-text">' + err.toString().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')  + "</span><br>";
         hiddenTextarea.value += err + "\n";
         scrollToBottom(styledTextDiv);
       };
@@ -528,7 +532,7 @@
           const output = decoder.decode(buffer);
           const styledTextDiv = document.getElementById('styledText');
           const hiddenTextarea = document.getElementById('output');
-          styledTextDiv.innerHTML += output ;
+          styledTextDiv.innerHTML += output.replace('<', '&lt;').replace('>', '&gt;')  ;
           hiddenTextarea.value += output ;
           lastOutput = output;
           scrollToBottom(styledTextDiv);
@@ -583,7 +587,7 @@
         }
       });
 
-
+      let stdlibModuleNames;
       // init Pyodide
       async function main() {
         let pyodide = await loadPyodide({
@@ -608,10 +612,11 @@
           });
         });
         // Add the project directory to the Python path
-        await pyodide.runPythonAsync(`
+        stdlibModuleNames = pyodide.runPython(`
         import sys
         sys.path.append('/workdir')
-        `);
+        list(sys.stdlib_module_names)
+        `).toJs();
         // Pyodide is now ready to use with the subdirectory
         stdout_func("Ready!\n>>>");
         runButton = document.getElementById("run");
@@ -627,16 +632,33 @@
         }
       });
 
+      function sanitizePythonIdentifier(fileName) {
+        const validCharsRegex = /[a-zA-Z0-9_]/g;
+        const sanitizedName = fileName.match(validCharsRegex)?.join('') || '';
+
+        // Ensure the sanitized name starts with a valid character
+        if (!/^[a-zA-Z_]/.test(sanitizedName)) {
+          return '_' + sanitizedName; 
+        }
+
+        return sanitizedName;
+      }
+
       async function evaluatePython() {
         let pyodide = await pyodideReadyPromise;
         const code = window.editor.getValue();
         // const activeTabId = document.querySelector('.tab.active').dataset.tabId;
         // const code = codeMirrors[activeTabId].getValue();
         //console.log("executing: "code)
+        const tabId = window.editor.getWrapperElement().parentElement.dataset.tabId;
+        const targetTab = document.querySelector(`.tab[data-tab-id="${tabId}"]`)
+        const targetButton = targetTab.querySelector(`.tab-button`);
+        const fileName = sanitizePythonIdentifier(targetButton.textContent.replace(/\.py$/, '')) + ".py";
+        pyodide.globals.set("__file__", fileName);
         runButton = document.getElementById("run");
         runButton.disabled = true;
         try {
-          let output = pyodide.runPython(code);
+          let output = pyodide.runPython(code, {filename: fileName});
           stdout_func(">>>");
           runButton.disabled = false;
         } catch (err) {

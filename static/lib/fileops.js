@@ -4,7 +4,20 @@ async function saveFile(filename, fileContent) {
      * save fileContent to filename into the temp virtualFS of pyodide.
      */
     let pyodide = await pyodideReadyPromise;
-    // Write the file content to the current dir
+    
+    // Create the dir if not yet exist
+    let cPath = '';
+    for ( d of filename.split('/').slice(0, -1)){
+      cPath = `${cPath}/${d}`.split('/').join('/');
+      let pathInfo = pyodide.FS.analyzePath(cPath);
+      if (pathInfo.exists){
+        cPath = pathInfo.path;
+      } else {
+        pyodide.FS.mkdir(cPath);
+      }
+    }
+
+    // Write the file content to the path
     await pyodide.FS.writeFile(`${filename}`, fileContent);
     stdout_func(`File ${filename} saved successfully.`);
     // Synchronize from in-memory FS to IndexedDB
@@ -24,7 +37,7 @@ async function readFile(filename) {
     try {
         const info = pyodide.FS.analyzePath(filename);
         if (info.exists === false || info.error !== 0 ) {
-            stderr_func("File not found:", filename);
+            stderr_func(`File not found: ${filename}`);
             throw new Error(`File not found ${filename}`);
         } else if (info.object.isFolder) {
             stderr_func(`Cannot open directory ${filename} as text.`);
@@ -38,6 +51,21 @@ async function readFile(filename) {
         throw error;
     }
 }
+
+async function fileInfo(filename) {
+  /**
+   * read fileContent from filename into the temp virtualFS of pyodide.
+   */
+  let pyodide = await pyodideReadyPromise
+  try {
+      const info = pyodide.FS.analyzePath(filename);
+      return info;
+  } catch (error) {
+      console.error('Error accessing file:', error);
+      throw error;
+  }
+}
+
 // Function to open the file selector
 async function uploadFileSelector() {
     /**
@@ -85,6 +113,10 @@ async function showFSContents(path = '.', mode="open") {
      */
     let pyodide = await pyodideReadyPromise;
     try {
+      const pathInfo = pyodide.FS.analyzePath(path);
+      if (!pathInfo.exists || !pathInfo.path.startsWith('/workdir')) {
+        path = `/workdir/${path}`.split('/').filter(Boolean).join('/');
+      }
       const contents = await pyodide.FS.readdir(path);
       const fileList = document.getElementById('gitRepofileList');
       fileList.innerHTML = ''; // Clear existing list
@@ -109,19 +141,13 @@ async function showFSContents(path = '.', mode="open") {
                     showFSContents(itemPath, mode);
                 }
             } else {
-                if (mode === "open") {
-                    link.onclick = (event) =>{
-                        closePopup();
-                        console.log(`File selected: ${itemPath}`);
-                        const fileContent = pyodide.FS.readFile(itemPath,{encoding:'utf8'});
-                        window.editor.setValue(fileContent);
-                        const tabId = window.editor.getWrapperElement().parentElement.dataset.tabId;
-                        targetTab = document.querySelector(`.tab[data-tab-id="${tabId}"]`)
-                        targetButton = targetTab.querySelector(`.tab-button`);
-                        targetButton.textContent = item;
-                        window.editor.focus();
-                    }
-                } else if (mode === "save") {
+              if (mode === "open") {
+                link.onclick = (event) => {
+                  event.preventDefault();
+                  document.getElementById("virtual-file-name").value = itemPath;
+                  confirmPopup();
+                }
+              } else if (mode === "save") {
                     link.onclick = (event) => {
                         event.preventDefault();
                         document.getElementById("virtual-file-name").value = itemPath;

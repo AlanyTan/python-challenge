@@ -1,0 +1,9 @@
+{
+    "title": "output literal values",
+    "goal": "use print() to output literal values",
+    "description": "Output the following values using print() function:\n    real numbers 3, 3.14\n    a complex number 3 + 4j\n    string 'words', and byte b'bytes'\n    True, and False\n    None\n",
+    "notes": "print can take multiple arguments like print(1,2), will print:1 2",
+    "starting_code": "print(,)\nprint()\nprint(,)\nprint(,)\nprint()\n",
+    "expected_output": "3 3.14\n(3+4j)\nwords b'bytes'\nTrue False\nNone\n",
+    "test_cases": []
+}

@@ -42,7 +42,7 @@ def execute_test(test_script: str, file_to_test: str, challenge_id: str) -> str:
     """
     try:
         # Execute pytest file_to_test and capture the output
-        pytest_cmd = ["pytest", test_script, "-qq", "-rN", "--tb=short",
+        pytest_cmd = ["pytest", test_script, "-vv", "-rN", "--tb=short",
                       "--user_file", file_to_test, "--challenge_id", challenge_id]
         output = subprocess.run(pytest_cmd, text=True, timeout=30,
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE,
@@ -94,7 +94,7 @@ def check_submission(challenge_id: str, file_to_test: str) -> str:
     test_module_file = challenge_test_file if os.path.exists(
         challenge_test_file) else "utils/generic_test.py"
     if os.path.exists(test_module_file):
-        # test_solutions.py exist, will outsource checking to i
+        # test_solutions.py exist, will outsource checking to it
         exec_result = "did not execute"
         try:
             exec_result = execute_test(

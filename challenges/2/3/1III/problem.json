@@ -1,0 +1,15 @@
+{
+    "title": "bitwise operations",
+    "goal": "understanding the bitwise NOT, AND, XOR, OR and shift",
+    "description": "\n",
+    "notes": "when answering a type question use quotation marks i.e. 'int'; it is expected that running this program does not produce any output.",
+    "condition_code": "a = 0b10011010\nb = 0b00110111\nc = 13\nd = 105\n",
+    "starting_code": "# given the below values of variable a to d, complete the following code: \n\n# print the value of a and bitwise NOT a:\nprint(,)\n\n# manually calculate bitwise NOT of b, and NOT c, and add answer to the \n#  right side of = of the following assignment statement \n# (hint, for b, you can flip each bit, but 0b format are unsigned, you will \n#  need to manually convert the result as a signed integer, since it has 8 bits,\n#  the highest bit is used as sign, so you need to subtract the result by 256, \n#  this is needed because integers are signed internally, but 0b format is \n#  unsigned ;\n#  for c, you actually don't need to do it bit by bit, although it is \n#  perfectly legit to convert it to binary and do it as b.):\nanswer_bitwise_not_b = \nanswer_bitwise_not_c = \nprint(answer_bitwise_not_b, answer_bitwise_not_c)\n\n# consider a and c, with bitwise AND, XOR, OR, which operation of these\n#  two values will produce the largest amount, what is the result value of this\n#  operation? (use an expression to answer, but you need to know which\n#  operation produce the largest result):\nanswer_largest_bitwise_operation_of_a_and_c = \nprint(answer_largest_bitwise_operation_of_a_and_c)\n\n# The following code tries to multiply d by c using bitwise operations.\n# To simplify the solution, we will use add operation +, but we have\n# shown using bitwise operation to realize addition, so it's possible to\n# completely realize multiplication using bitwise operations only.\n# Your task is to complete the missing parts of the code below (note, we \n# intentionally break down the steps to step_0 to step_4, so we can check the\n# intermediate results and make sure you did everything correctly.  With 4 \n# steps, we will only be able to handle c<=15, that is ok for now.)\n\n# step0\nmultiplier = c\nresult = 0\nmultiplicand = d\n\n# step1\nprint(result)\nif multiplier & 1: \n    result += multiplicand\nmultiplicand = multiplicand << 1\n\n# step2\nprint(result)\nif multiplier & 2:\n    result += multiplicand\nmultiplicand <<= 1\n\n# based on the above lines, use same logic, please finish ...step_3 \n# and ...ste_4, so that final result equals d * c\n# (please print intermediate result like above.)\n\n\n# final result\nprint(result)\n",
+    "expected_output": "154 -155\n-56 -14\n159\n0\n105\n105\n525\n1365\n",
+    "test_cases": [
+        [
+            "a = 24\nb = 83\nc = 11\nd = 72\n",
+            "24 -25\n-56 -14\n27\n0\n72\n216\n216\n792\n"
+        ]
+    ]
+}

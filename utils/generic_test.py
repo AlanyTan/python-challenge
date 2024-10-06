@@ -59,7 +59,7 @@ def pytest_generate_tests(metafunc):
     test_cases = []
     challenge_data = challenge_details(str(
         metafunc.config.getoption("--challenge_id")))
-    test_cases.append((challenge_data.get("starting_code", ''),
+    test_cases.append((challenge_data.get("condition_code", ''),
                       challenge_data.get("expected_output", '')))
     test_cases.extend(challenge_data.get("test_cases", []))
     metafunc.parametrize("start_condition, expected_output", test_cases,
@@ -75,9 +75,10 @@ def test_solution(challenge_data: dict, code_submitted: str,
         pytest test_solution -qq -rN -tb=short --user_file=submissions/u1/1.py
     """
 
-    starting_code = challenge_data.get("starting_code", '')
-
-    code_to_test = code_submitted.replace(starting_code, start_condition)
+    if (condition_code := challenge_data.get("condition_code", '')):
+        code_to_test = code_submitted.replace(condition_code, start_condition)
+    else:
+        code_to_test = code_submitted
 
     exec(code_to_test, None, None)
     captured = capsys.readouterr()

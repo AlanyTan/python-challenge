@@ -4,69 +4,53 @@ This should only be used for generating test_cases for non-function scripts.
 For all function based .py code, they should use their own test_solution.py
 """
 
-import os
-import json
-from config import config
+from utils.generate_problem_json import generate_problem_json, print_result
 
 
 problem: dict = {
-    "title": "output literal values",
-    "goal": "understanding the type of literals",
-    "description": "put a literal of the specified type between each tape():\n"
-            "an integer, and another integer"
-            "a float, and another float 3.14\n"
-            "a complex number \n"
-            "a string, and a byte\n"
-            "boolean True, and string 'True'"
-            "None, and string 'None'",
-    "notes": "i.e. print(type(1), type(2.71)) will output: "
-            "<class 'int'> <class 'float'>",
-    "starting_code": """print(type(), type())
-print(type(), type())
-print(type())
-print(type(), type())
-print(type(), type())
-print(type(), type())
+    "title": "assigning values to variables",
+    "goal": "understanding variables and assignments",
+    "description": """assign the specified values to the specified variables:
+    assign integer 42 to variable a
+    assign float 3.14 to variable b and c
+    assign string 'words' to variable d
+    assign byte b'bytes' to variable e
+    assign boolean True to variable f and g
+    assign None to variable h
+    assign variable a to variable i"
+    assign variable b to variable j and then assign a+j to k (try walrus)
+""",
+    "notes": "we provided a as an example, and b with a hint, and you will "
+            "need to complete the rest yourself.",
+    "starting_code": """# Assign integer 42 to variable a
+a = 42
+# Assign float 3.14 to variable b and c
+b = c =
+# Assign string 'words' to variable d
+
+# Assign byte b'bytes' to variable e
+
+# Assign boolean True to variable f and g
+
+# Assign None to variable h
+
+# Assign variable a to variable i
+
+# Assign variable b to variable j and then assign a+j to k (use walrus operator)
+
 """,
     "expected_output": ""
 }
-starting_condition = [""]
+starting_condition = []
 
 
 def solution() -> str:
     """the actual solution that will generate the expected output"""
-    from utils.generate_problem_json import print, print_result
-
-    print(type(1), type(2))
-    print(type(3.14), type(2.71))
-    print(type(3 + 4j))
-    print(type("words"), type(b"bytes"))
-    print(type(True), type('False'))
-    print(type(None), type('None'))
+    #from utils.generate_problem_json import print
 
     return print_result()
 
 
-def generate_problem_json(fn: str) -> None:
-    """generate the problem.json file for the challenge"""
-    my_dir = os.path.dirname(os.path.abspath(fn))
-    problem_json = os.path.join(my_dir, config.PROBLEM_FILENAME)
-    exec(starting_condition[0], None, None)
-    problem["expected_output"] = solution()
-    test_cases = []
-    for sc in starting_condition[1:]:
-        for o in [o for o in globals() if not o.startswith("__")]:
-            del globals()[o]
-        for o in [o for o in locals() if not o.startswith("__")]:
-            del locals()[o]
-        exec(sc, None, None)
-        expected_output = solution()
-        test_cases.append((sc, expected_output))
-    problem["test_cases"] = test_cases
-
-    with open(problem_json, 'w', encoding='utf-8') as f:
-        json.dump(problem, f, indent=4)
-
-
 if __name__ == '__main__':
-    generate_problem_json(__file__)
+    generate_problem_json(__file__, problem, starting_condition, solution,
+                          globals())

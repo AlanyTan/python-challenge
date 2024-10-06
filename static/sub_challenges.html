@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sub-Challenges</title>
+</head>
+<body>
+    <h1>Sub-Challenges</h1>
+    <ul>
+        {% for sub_challenge in sub_challenges %}
+        <li>
+            <a href="{{ sub_challenge.url }}">
+                {{ sub_challenge.name }}
+            </a>
+            {% if sub_challenge.description %}
+            - {{ sub_challenge.description }}
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

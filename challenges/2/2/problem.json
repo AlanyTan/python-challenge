@@ -1,9 +1,9 @@
 {
-    "title": "output literal values",
-    "goal": "understanding the type of literals",
-    "description": "put a literal of the specified type between each tape():\nan integer, and another integera float, and another float 3.14\na complex number \na string, and a byte\nboolean True, and string 'True'None, and string 'None'",
-    "notes": "i.e. print(type(1), type(2.71)) will output: <class 'int'> <class 'float'>",
-    "starting_code": "print(type(), type())\nprint(type(), type())\nprint(type())\nprint(type(), type())\nprint(type(), type())\nprint(type(), type())\n",
-    "expected_output": "<class 'int'> <class 'int'>\n<class 'float'> <class 'float'>\n<class 'complex'>\n<class 'str'> <class 'bytes'>\n<class 'bool'> <class 'str'>\n<class 'NoneType'> <class 'str'>\n",
+    "title": "assigning values to variables",
+    "goal": "understanding variables and assignments",
+    "description": "assign the specified values to the specified variables:\n    assign integer 42 to variable a\n    assign float 3.14 to variable b and c\n    assign string 'words' to variable d\n    assign byte b'bytes' to variable e\n    assign boolean True to variable f and g\n    assign None to variable h\n    assign variable a to variable i\"\n    assign variable b to variable j and then assign a+j to k (try walrus)\n",
+    "notes": "we provided a as an example, and b with a hint, and you will need to complete the rest yourself.",
+    "starting_code": "# Assign integer 42 to variable a\na = 42\n# Assign float 3.14 to variable b and c\nb = c =\n# Assign string 'words' to variable d\n\n# Assign byte b'bytes' to variable e\n\n# Assign boolean True to variable f and g\n\n# Assign None to variable h\n\n# Assign variable a to variable i\n\n# Assign variable b to variable j and then assign a+j to k (use walrus operator)\n\n",
+    "expected_output": "",
     "test_cases": []
 }
